@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Category\StoreRequest;
+use App\Http\Requests\Admin\Category\UpdateRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -35,11 +37,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Category $category)
+    public function store(StoreRequest $request, Category $category)
     {
-        $data = request()->validate([
-            'title' => 'string',
-        ]);
+        $data = $request->validated();
         Category::firstOrCreate($data);
         return redirect()->route('categories.index');
     }
@@ -73,11 +73,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Category $category)
+    public function update(UpdateRequest $request, Category $category)
     {
-        $data = request()->validate([
-            'title' => 'string',
-        ]);
+        $data = $request->validated();
         $category->update($data);
         return view('admin.category.show', compact('category'));
     }
