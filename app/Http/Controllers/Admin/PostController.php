@@ -29,10 +29,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() 
     {
         $categories = Category::all();
-        return view('admin.post.create', compact('categories'));
+        $tags = Tag::all();
+        return view('admin.post.create', compact('categories', 'tags'));
     }
 
     /**
@@ -44,8 +45,14 @@ class PostController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
+
+        $tags = $data['tags'];
+        unset($data['tags']);
+
         $data['image'] = Storage::put('/images', $data['image']);
-        Post::firstOrCreate($data);
+        
+        $post = Post::firstOrCreate($data);
+        $post->tags()->attach($tags);
         return redirect()->route('posts.index');
     }
 

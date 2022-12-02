@@ -48,7 +48,17 @@
         </select>
     </div>
 
-    <input type="submit" class="btn btn-primary mt-3" value="Add post">
+    <div class="form-group w-50">
+        <label for="tags">Tags</label>
+        <select multiple class="form-control" id="tags" name="tags[]">
+            @foreach($tags as $tag)
+            <!-- <option value="{{ $tag->id }}">{{ $tag->title }}</option> -->
+            <option {{ is_array( old('tag_id')) && in_array($tag->id, old('tag_id')) ? ' selected' : '' }} value="{{ $tag->id }}">{{ $tag->title }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <input type="submit" class="btn btn-primary mt-3 mb-3" value="Add post">
 </form>
 
 @endsection
