@@ -13,16 +13,42 @@
         </div>
     </div>
 </div>
-
-<form action="{{ route('posts.store') }}" method="POST" class="w-25">
+<h3>Add post</h3>
+<form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
-    <div class="form-group mb-3">
-        <input type="text" class="form-control" name="title" placeholder="Name post">
+    <div class="form-group mb-3 w-25">
+        <input type="text" class="form-control" name="title" placeholder="Name post" value="{{ old('title') }}">
         @error('title')
         <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
-    <input type="submit" class="btn btn-primary" value="Add post">
+    <div class="form-group">
+        <textarea name="content">
+
+        {{ old('content') }}
+        </textarea>
+        @error('content')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="formFile" class="form-label">Choose image</label>
+        <input class="form-control" type="file" id="formFile" name="image">
+        @error('image')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <div class="form-group w-50">
+        <label>Select category</label>
+        <select name="category_id" class="form-control">
+            @foreach ($categories as $category)
+            <option value="{{ $category->id }}" {{ $category->id == old('category_id') ? ' selected' : '' }}>{{ $category->title }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <input type="submit" class="btn btn-primary mt-3" value="Add post">
 </form>
 
 @endsection

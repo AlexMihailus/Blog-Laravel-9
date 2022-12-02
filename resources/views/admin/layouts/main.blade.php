@@ -17,6 +17,7 @@
 
 
     <!-- Scripts -->
+    <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
@@ -75,64 +76,68 @@
             </div>
         </nav>
         <div class="container-fluid">
-        <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 260px;">
-                <a href="{{ url('/') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                    <svg class="bi pe-none me-2" width="40" height="32">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                    <span class="fs-4">Home</span>
-                </a>
-                <hr>
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item">
-                        <a href="{{ url('/admin') }}" class="nav-link link-dark" aria-current="page">
-                            <svg class="bi pe-none me-2" width="16" height="16">
-                                <use xlink:href="#home"></use>
+            <div class="row">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 260px;">
+                        <a href="{{ url('/') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                            <svg class="bi pe-none me-2" width="40" height="32">
+                                <use xlink:href="#bootstrap"></use>
                             </svg>
-                            Admin
+                            <span class="fs-4">Home</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('categories.index') }}" class="nav-link link-dark">
-                            <svg class="bi pe-none me-2" width="16" height="16">
-                                <use xlink:href="#table"></use>
-                            </svg>
-                            Categories
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('posts.index') }}" class="nav-link link-dark">
-                            <svg class="bi pe-none me-2" width="16" height="16">
-                                <use xlink:href="#grid"></use>
-                            </svg>
-                            Posts
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('tags.index') }}" class="nav-link link-dark">
-                            <svg class="bi pe-none me-2" width="16" height="16">
-                                <use xlink:href="#people-circle"></use>
-                            </svg>
-                            Tags
-                        </a>
-                    </li>
-                </ul>
+                        <hr>
+                        <ul class="nav nav-pills flex-column mb-auto">
+                            <li class="nav-item">
+                                <a href="{{ url('/admin') }}" class="nav-link link-dark" aria-current="page">
+                                    <svg class="bi pe-none me-2" width="16" height="16">
+                                        <use xlink:href="#home"></use>
+                                    </svg>
+                                    Admin
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('categories.index') }}" class="nav-link link-dark">
+                                    <svg class="bi pe-none me-2" width="16" height="16">
+                                        <use xlink:href="#table"></use>
+                                    </svg>
+                                    Categories
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('posts.index') }}" class="nav-link link-dark">
+                                    <svg class="bi pe-none me-2" width="16" height="16">
+                                        <use xlink:href="#grid"></use>
+                                    </svg>
+                                    Posts
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('tags.index') }}" class="nav-link link-dark">
+                                    <svg class="bi pe-none me-2" width="16" height="16">
+                                        <use xlink:href="#people-circle"></use>
+                                    </svg>
+                                    Tags
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    @yield('content')
+                </main>
             </div>
-        </nav>
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        @yield('content')
-        </main>
         </div>
-        </div>
-        
-        
-        
-        
-        
+
+
+
+
+
 
     </div>
+    <script>
+        CKEDITOR.replace('content');
+    </script>
+
 </body>
 
 </html>

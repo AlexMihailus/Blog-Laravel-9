@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -30,7 +31,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create');
+        $categories = Category::all();
+        return view('admin.post.create', compact('categories'));
     }
 
     /**
@@ -42,8 +44,9 @@ class PostController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
+        $data['image'] = Storage::put('/images', $data['image']);
         Post::firstOrCreate($data);
-        return redirect()->route('admin.post.index');
+        return redirect()->route('posts.index');
     }
 
     /**
