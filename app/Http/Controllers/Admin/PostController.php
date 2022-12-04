@@ -11,7 +11,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class PostController extends Controller
+class PostController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -29,7 +29,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() 
+    public function create()
     {
         $categories = Category::all();
         $tags = Tag::all();
@@ -45,13 +45,7 @@ class PostController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-
-        $tags = $data['tags'];
-        unset($data['tags']);
-        $data['image'] = Storage::disk('public')->put('/images', $data['image']);
-        
-        $post = Post::firstOrCreate($data);
-        $post->tags()->attach($tags);
+        $this->service->store($data);
         return redirect()->route('posts.index');
     }
 
@@ -89,13 +83,7 @@ class PostController extends Controller
     public function update(UpdateRequest $request, Post $post)
     {
         $data = $request->validated();
-        $tags = $data['tags'];
-        unset($data['tags']);
-        if (isset($data['image'])) {
-            $data['image'] = Storage::disk('public')->put('/images', $data['image']);
-        }
-        $post->update($data);
-        $post->tags()->sync($tags);
+        $post = $this->service->update($data, $post);
         return view('admin.post.show', compact('post'));
     }
 
