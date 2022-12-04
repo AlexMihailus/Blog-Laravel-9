@@ -56,6 +56,9 @@
             </option>
             @endforeach
         </select>
+        @error('category_id')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
     </div>
 
     <div class="form-group w-50">
@@ -66,6 +69,9 @@
             <option {{ is_array( $post->tags->pluck('id')->toArray() ) && in_array( $tag->id, $post->tags->pluck('id')->toArray() ) ? ' selected' : '' }} value="{{ $tag->id }}">{{ $tag->title }}</option>
             @endforeach
         </select>
+        @error('tag_id')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
     </div>
     <input type="submit" class="btn btn-primary mt-3 mb-3" value="Update">
 </form>

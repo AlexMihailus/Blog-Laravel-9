@@ -13,12 +13,17 @@ class PostService
     {
         try {
             Db::beginTransaction();
-            $tags = $data['tags'];
-            unset($data['tags']);
-            $data['image'] = Storage::disk('public')->put('/images', $data['image']);
+            if (isset($data['tags'])) {
+                $tags = $data['tags'];
+                unset($data['tags']);
+            }
 
+            $data['image'] = Storage::disk('public')->put('/images', $data['image']);
             $post = Post::firstOrCreate($data);
-            $post->tags()->attach($tags);
+            if (isset($tags)) {
+                $post->tags()->attach($tags);
+            }
+
             DB::commit();
         } catch (Exception $exception) {
             DB::rollBack();
@@ -30,14 +35,18 @@ class PostService
     {
         try {
             Db::beginTransaction();
-            $tags = $data['tags'];
-            unset($data['tags']);
+            if (isset($data['tags'])) {
+                $tags = $data['tags'];
+                unset($data['tags']);
+            }
 
             if (isset($data['image'])) {
                 $data['image'] = Storage::disk('public')->put('/images', $data['image']);
             }
             $post->update($data);
-            $post->tags()->sync($tags);
+            if (isset($tags)) {
+                $post->tags()->sync($tags);
+            }
             DB::commit();
         } catch (Exception $exception) {
             abort(500);
