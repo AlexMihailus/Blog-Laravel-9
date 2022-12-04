@@ -48,8 +48,7 @@ class PostController extends Controller
 
         $tags = $data['tags'];
         unset($data['tags']);
-
-        $data['image'] = Storage::put('/images', $data['image']);
+        $data['image'] = Storage::disk('public')->put('/images', $data['image']);
         
         $post = Post::firstOrCreate($data);
         $post->tags()->attach($tags);
@@ -75,7 +74,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.post.edit', compact('post'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('admin.post.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -88,7 +89,13 @@ class PostController extends Controller
     public function update(UpdateRequest $request, Post $post)
     {
         $data = $request->validated();
+        $tags = $data['tags'];
+        unset($data['tags']);
+        if (isset($data['image'])) {
+            $data['image'] = Storage::disk('public')->put('/images', $data['image']);
+        }
         $post->update($data);
+        $post->tags()->sync($tags);
         return view('admin.post.show', compact('post'));
     }
 
