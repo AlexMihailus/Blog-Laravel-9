@@ -24,11 +24,11 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [WelcomeController::class, 'index']);
-Route::get('/admin', [MainController::class, 'index']);
-Route::resource('admin/categories', CategoryController::class);
-Route::resource('admin/tags', TagController::class);
-Route::resource('admin/posts', PostController::class);
-Route::resource('admin/users', UserController::class);
+Route::get('/admin', [MainController::class, 'index'])->middleware(['auth','admin']);
+Route::resource('admin/categories', CategoryController::class)->middleware(['auth','admin']);
+Route::resource('admin/tags', TagController::class)->middleware(['auth','admin']);
+Route::resource('admin/posts', PostController::class)->middleware(['auth','admin']);
+Route::resource('admin/users', UserController::class)->middleware(['auth','admin']);
 
 Auth::routes();
 
