@@ -1,133 +1,50 @@
 @extends('admin.layouts.main')
 @section('content')
 
-<h2>Section title</h2>
-<div class="table-responsive">
-    <table class="table table-striped table-sm">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1,001</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-            </tr>
-            <tr>
-                <td>1,002</td>
-                <td>placeholder</td>
-                <td>irrelevant</td>
-                <td>visual</td>
-                <td>layout</td>
-            </tr>
-            <tr>
-                <td>1,003</td>
-                <td>data</td>
-                <td>rich</td>
-                <td>dashboard</td>
-                <td>tabular</td>
-            </tr>
-            <tr>
-                <td>1,003</td>
-                <td>information</td>
-                <td>placeholder</td>
-                <td>illustrative</td>
-                <td>data</td>
-            </tr>
-            <tr>
-                <td>1,004</td>
-                <td>text</td>
-                <td>random</td>
-                <td>layout</td>
-                <td>dashboard</td>
-            </tr>
-            <tr>
-                <td>1,005</td>
-                <td>dashboard</td>
-                <td>irrelevant</td>
-                <td>text</td>
-                <td>placeholder</td>
-            </tr>
-            <tr>
-                <td>1,006</td>
-                <td>dashboard</td>
-                <td>illustrative</td>
-                <td>rich</td>
-                <td>data</td>
-            </tr>
-            <tr>
-                <td>1,007</td>
-                <td>placeholder</td>
-                <td>tabular</td>
-                <td>information</td>
-                <td>irrelevant</td>
-            </tr>
-            <tr>
-                <td>1,008</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-            </tr>
-            <tr>
-                <td>1,009</td>
-                <td>placeholder</td>
-                <td>irrelevant</td>
-                <td>visual</td>
-                <td>layout</td>
-            </tr>
-            <tr>
-                <td>1,010</td>
-                <td>data</td>
-                <td>rich</td>
-                <td>dashboard</td>
-                <td>tabular</td>
-            </tr>
-            <tr>
-                <td>1,011</td>
-                <td>information</td>
-                <td>placeholder</td>
-                <td>illustrative</td>
-                <td>data</td>
-            </tr>
-            <tr>
-                <td>1,012</td>
-                <td>text</td>
-                <td>placeholder</td>
-                <td>layout</td>
-                <td>dashboard</td>
-            </tr>
-            <tr>
-                <td>1,013</td>
-                <td>dashboard</td>
-                <td>irrelevant</td>
-                <td>text</td>
-                <td>visual</td>
-            </tr>
-            <tr>
-                <td>1,014</td>
-                <td>dashboard</td>
-                <td>illustrative</td>
-                <td>rich</td>
-                <td>data</td>
-            </tr>
-            <tr>
-                <td>1,015</td>
-                <td>random</td>
-                <td>tabular</td>
-                <td>information</td>
-                <td>text</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+
+            <div class="col-sm-6 mt-3">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item active">Admin</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container text-center">
+    <div class="row align-items-center justify-content-around">
+        <div class="card mb-3" style="max-width: 18rem;">
+            <div class="card-body">
+                <h3 class="card-title">{{ $data['usersCount'] }}</h3>
+                <a href="{{ route('users.index') }}" class="btn btn-primary">Users</a>
+            </div>
+        </div>
+        <div class="card mb-3" style="max-width: 18rem;">
+
+            <div class="card-body">
+                <h3>{{ $data['postsCount'] }}</h3>
+                <a href="{{ route('posts.index') }}" class="btn btn-primary">Posts</a>
+            </div>
+        </div>
+        <div class="card mb-3" style="max-width: 18rem;">
+
+            <div class="card-body">
+            <h3>{{ $data['categoriesCount'] }}</h3>
+            <a href="{{ route('categories.index') }}" class="btn btn-primary">Categories</a>
+            </div>
+        </div>
+        <div class="card mb-3" style="max-width: 18rem;">
+
+            <div class="card-body">
+            <h3>{{ $data['tagsCount'] }}</h3>
+            <a href="{{ route('tags.index') }}" class="btn btn-primary">Tags</a>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 @endsection
