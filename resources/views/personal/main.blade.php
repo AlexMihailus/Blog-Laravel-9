@@ -18,17 +18,32 @@
     <div class="row align-items-center justify-content-around">
         <div class="card mb-3" style="max-width: 18rem;">
             <div class="card-body">
-                <h3 class="card-title">10</h3>
-                <a href="{{ route('likes.index') }}" class="btn btn-primary">Liked posts</a>
+                <h3 class="card-title">{{ $data['usersCount'] }}</h3>
+                <a href="{{ route('users.index') }}" class="btn btn-primary">Users</a>
             </div>
         </div>
         <div class="card mb-3" style="max-width: 18rem;">
 
             <div class="card-body">
-                <h3 class="card-title">10</h3>
-                <a href="{{ route('comments.index') }}" class="btn btn-primary">Comments</a>
+                <h3>{{ $data['postsCount'] }}</h3>
+                <a href="{{ route('posts.index') }}" class="btn btn-primary">Posts</a>
             </div>
         </div>
+        <div class="card mb-3" style="max-width: 18rem;">
+
+            <div class="card-body">
+            <h3>{{ $data['categoriesCount'] }}</h3>
+            <a href="{{ route('categories.index') }}" class="btn btn-primary">Categories</a>
+            </div>
+        </div>
+        <div class="card mb-3" style="max-width: 18rem;">
+
+            <div class="card-body">
+            <h3>{{ $data['tagsCount'] }}</h3>
+            <a href="{{ route('tags.index') }}" class="btn btn-primary">Tags</a>
+            </div>
+        </div>
+
     </div>
 </div>
 
