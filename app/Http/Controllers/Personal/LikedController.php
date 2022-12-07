@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Personal;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class LikedController extends Controller
@@ -14,7 +15,8 @@ class LikedController extends Controller
      */
     public function index()
     {
-        return view('personal.liked.index');
+        $posts = auth()->user()->likedPosts;
+        return view('personal.liked.index', compact('posts'));
     }
 
     /**
@@ -78,8 +80,9 @@ class LikedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        auth()->user()->likedPosts()->detach($post->id);
+        return redirect()->route('likes.index');
     }
 }
