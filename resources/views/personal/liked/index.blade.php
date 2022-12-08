@@ -8,7 +8,7 @@
             <div class="col-sm-6 mt-3">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">likeds</li>
+                    <li class="breadcrumb-item active">likes</li>
                 </ol>
             </div>
         </div>
