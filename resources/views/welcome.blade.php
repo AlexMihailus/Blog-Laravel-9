@@ -56,8 +56,7 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        .card-img-top
-         {
+        .card-img-top {
             width: 100%;
             height: 270px;
         }
@@ -69,18 +68,49 @@
     @extends('layouts.main')
 
     @section('content')
+
     <main class="container">
         <div class="row mb-2">
-        <h1 class="text-center">All posts</h1>
+            <div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    @foreach ($randomPosts as $post)
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <a href="{{ route('post.show', $post->id) }}">
+                            <img src="{{ 'storage/' . $post->image }}" class="d-block w-100" alt="blog post">
+                        </a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1 class="blog-post-title">{{ $post->title }}</h1>
+                        </div>
+                    </div>
+                    @endforeach
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <h1 class="text-center">All posts</h1>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($posts as $post)
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img src="{{ 'storage/' . $post->image }}" class="card-img-top" alt="blog post">
+                        <a href="{{ route('post.show', $post->id) }}">
+                            <img src="{{ 'storage/' . $post->image }}" class="card-img-top" alt="blog post">
+                        </a>
                         <div class="card-body">
                             <p class="card-text">{{ $post->category->title }}</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="blog-post-permalink">
+                                <a href="{{ route('post.show', $post->id) }}">
                                     <h6 class="blog-post-title">{{ $post->title }}</h6>
                                 </a>
                                 <small class="text-muted">9 mins</small>
@@ -89,26 +119,29 @@
                     </div>
                 </div>
                 @endforeach
-                
+
 
             </div>
 
-                <div class="mt-3">
-                    {{ $posts->links() }}
-                </div>
+            <div class="mt-3">
+                {{ $posts->links() }}
+            </div>
 
-            
+
             <h1 class="text-center">Popular posts</h1>
+
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                 @foreach ($likedPosts as $post)
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img src="{{ 'storage/' . $post->image }}" class="card-img-top" alt="blog post">
+                        <a href="{{ route('post.show', $post->id) }}">
+                            <img src="{{ 'storage/' . $post->image }}" class="card-img-top" alt="blog post">
+                        </a>
                         <div class="card-body">
                             <p class="card-text">{{ $post->category->title }}</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="blog-post-permalink">
+                                <a href="{{ route('post.show', $post->id) }}">
                                     <h6 class="blog-post-title">{{ $post->title }}</h6>
                                 </a>
                                 <small class="text-muted">9 mins</small>

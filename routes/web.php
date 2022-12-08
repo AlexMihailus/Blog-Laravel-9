@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [WelcomeController::class, 'index']);
+Route::get('posts/{post}', [WelcomeController::class, 'show'])->name('post.show');
 
 Route::get('/admin', [MainController::class, 'index'])->middleware(['auth','admin']);
 Route::resource('admin/categories', CategoryController::class)->middleware(['auth','admin']);
