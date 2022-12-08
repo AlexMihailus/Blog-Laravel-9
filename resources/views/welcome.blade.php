@@ -55,6 +55,12 @@
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
         }
+
+        .card-img-top
+         {
+            width: 100%;
+            height: 270px;
+        }
     </style>
     <title>Laravel</title>
 </head>
@@ -65,154 +71,55 @@
     @section('content')
     <main class="container">
         <div class="row mb-2">
+        <h1 class="text-center">All posts</h1>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                @foreach ($posts as $post)
                 <div class="col">
                     <div class="card shadow-sm">
-                    <img src="https://picsum.photos/id/0/300/200" class="card-img-top" alt="photo">
-
+                        <img src="{{ 'storage/' . $post->image }}" class="card-img-top" alt="blog post">
                         <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text">{{ $post->category->title }}</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
+                                <a href="#" class="blog-post-permalink">
+                                    <h6 class="blog-post-title">{{ $post->title }}</h6>
+                                </a>
                                 <small class="text-muted">9 mins</small>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                    <img src="https://picsum.photos/id/1/300/200" class="card-img-top" alt="photo">
+                @endforeach
+                
 
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                    <img src="https://picsum.photos/id/2/300/200" class="card-img-top" alt="photo">
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                    <img src="https://picsum.photos/id/3/300/200" class="card-img-top" alt="photo">
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                    <img src="https://picsum.photos/id/4/300/200" class="card-img-top" alt="photo">
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                    <img src="https://picsum.photos/id/5/300/200" class="card-img-top" alt="photo">
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                    <img src="https://picsum.photos/id/6/300/200" class="card-img-top" alt="photo">
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                    <img src="https://picsum.photos/id/7/300/200" class="card-img-top" alt="photo">
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                    <img src="https://picsum.photos/id/8/300/200" class="card-img-top" alt="photo">
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+
+                <div class="mt-3">
+                    {{ $posts->links() }}
+                </div>
+
+            
+            <h1 class="text-center">Popular posts</h1>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                @foreach ($likedPosts as $post)
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img src="{{ 'storage/' . $post->image }}" class="card-img-top" alt="blog post">
+                        <div class="card-body">
+                            <p class="card-text">{{ $post->category->title }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#" class="blog-post-permalink">
+                                    <h6 class="blog-post-title">{{ $post->title }}</h6>
+                                </a>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+
+        </div>
         </div>
     </main>
     @endsection
