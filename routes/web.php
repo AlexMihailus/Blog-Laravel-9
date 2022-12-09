@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Personal\CommentController;
 use App\Http\Controllers\Personal\LikedController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,12 +28,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'index']);
 Route::get('posts/{post}', [WelcomeController::class, 'show'])->name('post.show');
+Route::post('posts/{post}/comments', [CommentsController::class, 'store'])->name('post.comment.store');
 
-Route::get('/admin', [MainController::class, 'index'])->middleware(['auth','admin']);
-Route::resource('admin/categories', CategoryController::class)->middleware(['auth','admin']);
-Route::resource('admin/tags', TagController::class)->middleware(['auth','admin']);
-Route::resource('admin/posts', PostController::class)->middleware(['auth','admin']);
-Route::resource('admin/users', UserController::class)->middleware(['auth','admin']);
+Route::get('/admin', [MainController::class, 'index'])->middleware(['auth', 'admin']);
+Route::resource('admin/categories', CategoryController::class)->middleware(['auth', 'admin']);
+Route::resource('admin/tags', TagController::class)->middleware(['auth', 'admin']);
+Route::resource('admin/posts', PostController::class)->middleware(['auth', 'admin']);
+Route::resource('admin/users', UserController::class)->middleware(['auth', 'admin']);
 
 Auth::routes();
 
