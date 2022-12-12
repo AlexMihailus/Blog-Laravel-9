@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $likedCount = auth()->user()->likedPosts->count();
+        $commentsCount = auth()->user()->comments->count();
+        return view('home', compact('likedCount', 'commentsCount'));
     }
 }

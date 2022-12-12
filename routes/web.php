@@ -23,10 +23,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/', [WelcomeController::class, 'index']);
 Route::get('posts/{post}', [WelcomeController::class, 'show'])->name('post.show');
 Route::post('posts/{post}/comments', [CommentsController::class, 'store'])->name('post.comment.store');

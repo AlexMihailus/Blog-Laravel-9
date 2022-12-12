@@ -18,14 +18,14 @@
     <div class="row align-items-center justify-content-around">
         <div class="card mb-3" style="max-width: 18rem;">
             <div class="card-body">
-                <h3 class="card-title">10</h3>
+                <h3 class="card-title">{{ $likedCount }}</h3>
                 <a href="{{ route('likes.index') }}" class="btn btn-primary">Liked posts</a>
             </div>
         </div>
         <div class="card mb-3" style="max-width: 18rem;">
 
             <div class="card-body">
-                <h3 class="card-title">10</h3>
+                <h3 class="card-title">{{ $commentsCount }}</h3>
                 <a href="{{ route('comments.index') }}" class="btn btn-primary">Comments</a>
             </div>
         </div>

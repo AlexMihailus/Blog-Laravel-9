@@ -35,9 +35,10 @@ class LikedController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Post $post)
     {
-        //
+        auth()->user()->likedPosts()->toggle($post->id);
+        return redirect()->back();
     }
 
     /**
@@ -80,9 +81,8 @@ class LikedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy()
     {
-        auth()->user()->likedPosts()->detach($post->id);
-        return redirect()->route('likes.index');
+        //
     }
 }

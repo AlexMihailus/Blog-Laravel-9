@@ -81,7 +81,6 @@
                                     <a href="{{ route('post.show', $post->id) }}">
                                         <h6 class="blog-post-title">{{ $post->title }}</h6>
                                     </a>
-                                    <small class="text-muted">9 mins</small>
                                 </div>
                             </div>
                         </div>
