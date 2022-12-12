@@ -111,7 +111,7 @@
                                     Сomments
                                 </a>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </nav>
@@ -120,11 +120,6 @@
                 </main>
             </div>
         </div>
-
-
-
-
-
 
     </div>
     <script>

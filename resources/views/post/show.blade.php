@@ -39,14 +39,8 @@
                     </div>
                     @endguest
                 </section>
-
-
-
-
-
                 <h1 class="text-center">Related Posts</h1>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
                     @foreach ($relatedPosts as $relatedPost)
                     <div class="col">
                         <div class="card shadow-sm">
@@ -78,8 +72,8 @@
                                     @endguest
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{{ route('post.show', $post->id) }}">
-                                        <h6 class="blog-post-title">{{ $post->title }}</h6>
+                                    <a href="{{ route('post.show', $relatedPost->id) }}">
+                                        <h6 class="blog-post-title">{{ $relatedPost->title }}</h6>
                                     </a>
                                 </div>
                             </div>
@@ -125,12 +119,6 @@
                     </form>
                 </section>
                 @endauth
-
-
-
-
-
-
             </div>
         </div>
     </div>
